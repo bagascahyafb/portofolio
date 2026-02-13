@@ -34,7 +34,7 @@ function Beranda() {
             {projectData.map((project) => (
             <div className="col-md-4" key={project.id}>
                 <div className="card h-100">
-                <img src={project.imageUrl} className="card-img-top" alt={project.title} />
+                {/* <img src={project.imageUrl} className="card-img-top" alt={project.title} /> */}
                 <div className="card-body">
                     <h5 className="card-title">{project.title}</h5>
                     <p className="card-text">{project.description.substring(0, 100)}...</p>
@@ -48,6 +48,30 @@ function Beranda() {
             </div>
             ))}
         </div>
+                
+        <hr className="mt-5" />
+
+          <h2 className="mt-4">Kontak Saya</h2>
+
+          <div className="row mt-3">
+            <div className="col-md-6">
+              <p><strong>Email:</strong> bagascahyafajarbastian@gmail.com</p>
+              <p><strong>WhatsApp:</strong> 08999021483</p>
+            </div>
+
+            <div className="col-md-6">
+              <p>
+                <strong>LinkedIn:</strong>{" "}
+                <a 
+                  href="https://www.linkedin.com/in/bagascahyafb/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  linkedin.com/in/bagascahyafb
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
     </div>
   );

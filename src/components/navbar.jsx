@@ -12,9 +12,8 @@ function AppNavbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/">Beranda</Link>
+              <a className="nav-link" href="https://www.linkedin.com/in/bagascahyafb/">LinkedIn</a>
             </li>
-            {/* Tambahkan link lain jika perlu, misal /tentang atau /kontak */}
           </ul>
         </div>
       </div>

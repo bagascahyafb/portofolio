@@ -23,7 +23,7 @@ function ProjectDetail() {
 
       <div className="row">
         <div className="col-md-8">
-          <img src={project.imageUrl} className="img-fluid rounded mb-4" alt={project.title} />
+          {/* <img src={project.imageUrl} className="img-fluid rounded mb-4" alt={project.title} /> */}
           <h3>Deskripsi Project</h3>
           <p>{project.description}</p>
         </div>

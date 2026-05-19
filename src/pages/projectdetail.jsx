@@ -7,39 +7,44 @@ function ProjectDetail() {
   const project = projectData.find(p => p.id === projectId);
   if (!project) {
     return (
-      <div>
-        <h2>Project Tidak Ditemukan!</h2>
-        <Link to="/" className="btn btn-secondary">Kembali ke Beranda</Link>
+      <div className="container section-block">
+        <h2>Project not found.</h2>
+        <Link to="/" className="btn btn-secondary-custom">Back Home</Link>
       </div>
     );
   }
 
   return (
-    <div>
-      <Link to="/" className="btn btn-outline-secondary mb-4">&larr; Kembali ke Beranda</Link>
+    <div className="container section-block">
+      <Link to="/" className="btn btn-secondary-custom mb-4">&larr; Back Home</Link>
 
-      <h1>{project.title}</h1>
-      <hr />
+      <div className="detail-header">
+        <p className="eyebrow">Project Detail</p>
+        <h1>{project.title}</h1>
+        <p className="section-description">{project.role} / {project.period}</p>
+      </div>
 
-      <div className="row">
-        <div className="col-md-8">
+      <div className="detail-grid">
+        <article className="detail-content">
           {/* <img src={project.imageUrl} className="img-fluid rounded mb-4" alt={project.title} /> */}
-          <h3>Deskripsi Project</h3>
+          <h3>What it does</h3>
           <p>{project.description}</p>
-        </div>
+          {project.source && (
+            <>
+              <h3>Source</h3>
+              <p>{project.source}</p>
+            </>
+          )}
+        </article>
 
-        <div className="col-md-4">
-          <div className="card">
-            <div className="card-header">
-              Teknologi yang Digunakan
-            </div>
-            <ul className="list-group list-group-flush">
-              {project.techStack.map(tech => (
-                <li className="list-group-item" key={tech}>{tech}</li>
-              ))}
-            </ul>
+        <aside className="tech-panel">
+          <h3>Tech Stack</h3>
+          <div className="tag-row">
+            {project.techStack.map(tech => (
+              <span className="tag" key={tech}>{tech}</span>
+            ))}
           </div>
-        </div>
+        </aside>
       </div>
     </div>
   );

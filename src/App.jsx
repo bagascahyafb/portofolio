@@ -1,4 +1,5 @@
 // src/App.jsx
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 // Import Halaman (akan kita buat selanjutnya)
@@ -10,12 +11,27 @@ import Navbar from './components/navbar';
 import Footer from './components/footer';
 
 function App() {
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    if (savedTheme) return savedTheme;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('portfolio-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'));
+  };
+
   return (
-    <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
-      <Navbar />
+    <div className="app-shell d-flex flex-column">
+      <Navbar theme={theme} onToggleTheme={toggleTheme} />
 
       {/* Konten utama akan berganti di sini */}
-      <main className="container-fluid my-5 flex-grow-1">
+      <main className="main-content flex-grow-1">
         <Routes>
           {/* Rute 1: Halaman Beranda */}
           <Route path="/" element={<Beranda />} />

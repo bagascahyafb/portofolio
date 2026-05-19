@@ -2,7 +2,7 @@
 
 function Footer() {
     return (
-      <footer className="bg-dark text-white text-center p-3 mt-auto">
+      <footer className="site-footer mt-auto">
         <div className="container">
           <p>&copy; {new Date().getFullYear()} Bagas Cahya Fajar Bastian. Dibuat dengan React & Bootstrap.</p>
         </div>

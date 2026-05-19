@@ -1,79 +1,105 @@
 import { Link } from 'react-router-dom';
 import { projectData } from '../data/projects';
 
-import fotoProfilSaya from '../assets/Profil Photo.jpg'; 
+import fotoProfilSaya from '../assets/profile.jpeg'; 
 
 function Beranda() {
+  const scrollToProjects = () => {
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div>
-        <div className="p-5 mb-4 bg-light rounded-3">
-        <div className="row align-items-center">
-            <div className="col-md-8">
-              <h1 className="display-5 fw-bold">Selamat Datang di Portofolio Saya</h1>
-              <p className="fs-4">
-                Saya adalah seorang mahasiswa Sains Data Terapan di Politeknik Elektronika Negeri Surabaya yang gemar untuk menyelesaikan masalah riil berdasarkan dari data. 
-                Lihat beberapa project yang telah saya kerjakan di bawah ini.
+    <>
+      <section className="hero-section" id='home'>
+        <div className="container">
+          <div className="hero-grid">
+            <div className="hero-copy">
+              <p className="eyebrow">Data Science Portfolio</p>
+              <h1>Bagas Cahya Fajar Bastian</h1>
+              <p className="hero-lead">
+                Applied Data Science student who enjoys building practical data apps, dashboards, and machine learning workflows for real-world problems.
               </p>
+              <div className="hero-actions">
+                <button className="btn btn-primary-custom" type="button" onClick={scrollToProjects}>See Projects</button>
+              </div>
             </div>
-            
-            <div className="col-md-4 text-center">
-              <img 
-                src={fotoProfilSaya} 
-                alt="Foto Profil"
-                className="img-fluid rounded-circle"
-                style={{ maxWidth: '250px', height: 'auto' }} 
-              />
+
+            <div className="profile-panel">
+              <img src={fotoProfilSaya} alt="Foto Profil Bagas Cahya Fajar Bastian" className="profile-photo" />
+              <div>
+                <p className="profile-name">Undergraduate Applied Data Science</p>
+                <p className="profile-meta">Python ● Streamlit ● Tableau ● Machine Learning</p>
+              </div>
             </div>
-            
+          </div>
+        </div>
+      </section>
+
+      <section className="section-block">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">Skills</p>
+            <h2>Things I Like Building</h2>
           </div>
 
-        <h2 >Project Saya</h2>
-        <hr />
-
-        <div className="row g-4">
-            {projectData.map((project) => (
-            <div className="col-md-4" key={project.id}>
-                <div className="card h-100">
-                {/* <img src={project.imageUrl} className="card-img-top" alt={project.title} /> */}
-                <div className="card-body">
-                    <h5 className="card-title">{project.title}</h5>
-                    <p className="card-text">{project.description.substring(0, 100)}...</p>
-                </div>
-                <div className="card-footer">
-                    <Link to={`/project/${project.id}`} className="btn btn-primary">
-                    Lihat Detail
-                    </Link>
-                </div>
-                </div>
-            </div>
+          <div className="skill-grid">
+            {['Data Analysis', 'Data Visualization', 'Data Scientist', 'Machine Learning', 'AI Engineer' ,'Dashboard Development', 'Recommendation Systems', 'UI Design'].map((skill) => (
+              <div className="skill-pill" key={skill}>{skill}</div>
             ))}
+          </div>
         </div>
-                
-        <hr className="mt-5" />
+      </section>
 
-          <h2 className="mt-4">Kontak Saya</h2>
+      <section className="section-block" id="projects">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow">Selected Work</p>
+            <h2>Projects</h2>
+            <p className="section-description">A mix of CV projects and local code projects that have clear apps, notebooks, APIs, or dashboards behind them.</p>
+          </div>
 
-          <div className="row mt-3">
-            <div className="col-md-6">
-              <p><strong>Email:</strong> bagascahyafajarbastian@gmail.com</p>
-              <p><strong>WhatsApp:</strong> 08999021483</p>
+          <div className="project-grid">
+            {projectData.map((project) => (
+              <article className="portfolio-card" key={project.id}>
+                <div className="card-accent"></div>
+                <div className="card-body-custom">
+                  <h3>{project.title}</h3>
+                  <p className="card-meta">{project.role} / {project.period}</p>
+                  <p>{project.description.substring(0, 160)}...</p>
+                  <div className="tag-row">
+                    {project.techStack.slice(0, 3).map((tech) => (
+                      <span className="tag" key={tech}>{tech}</span>
+                    ))}
+                  </div>
+                </div>
+                <div className="card-footer-custom">
+                  <Link to={`/project/${project.id}`} className="btn btn-link-custom">
+                    View Details
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-block contact-section">
+        <div className="container">
+          <div className="contact-panel">
+            <div>
+              <p className="eyebrow">Contact</p>
+              <h2>Let's Connect</h2>
+              <p>Open to data projects, dashboard work, visualization ideas, and collaboration chats.</p>
             </div>
-
-            <div className="col-md-6">
-              <p>
-                <strong>LinkedIn:</strong>{" "}
-                <a 
-                  href="https://www.linkedin.com/in/bagascahyafb/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  linkedin.com/in/bagascahyafb
-                </a>
-              </p>
+            <div className="contact-list">
+              <a href="mailto:bagascahyafajarbastian@gmail.com">bagascahyafajarbastian@gmail.com</a>
+              <a href="https://wa.me/628999021483" target="_blank" rel="noopener noreferrer">WhatsApp: 08999021483</a>
+              <a href="https://www.linkedin.com/in/bagascahyafb/" target="_blank" rel="noopener noreferrer">linkedin.com/in/bagascahyafb</a>
             </div>
           </div>
         </div>
-    </div>
+      </section>
+    </>
   );
 }
 

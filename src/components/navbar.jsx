@@ -1,20 +1,35 @@
 // src/components/Navbar.jsx
 import { Link } from 'react-router-dom';
 
-function AppNavbar() {
+function AppNavbar({ theme, onToggleTheme }) {
+  const scrollToSection = (sectionId) => {
+    const scroll = () => document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+
+    if (window.location.hash !== '#/') {
+      window.location.hash = '#/';
+      window.setTimeout(scroll, 80);
+      return;
+    }
+
+    scroll();
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid">
-        <Link className="navbar-brand" to="/">Bagas Cahya Fajar Bastian</Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="https://www.linkedin.com/in/bagascahyafb/">LinkedIn</a>
-            </li>
-          </ul>
+    <nav className="site-nav">
+      <div className="container nav-container">
+        <Link className="brand-link" to="/" onClick={() => scrollToSection('home')}>
+          <span className="brand-mark">B</span>
+          <span>Bagas Cahya Fajar Bastian</span>
+        </Link>
+
+        <div className="nav-actions">
+          <button className="nav-link-custom nav-button" type="button" onClick={() => scrollToSection('projects')}>Projects</button>
+          <a className="nav-link-custom" href="https://www.linkedin.com/in/bagascahyafb/" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
+          <button className="theme-toggle" type="button" onClick={onToggleTheme} aria-label="Ganti mode warna">
+            <span aria-hidden="true">{theme === 'light' ? 'Dark' : 'Light'}</span>
+          </button>
         </div>
       </div>
     </nav>
